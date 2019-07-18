@@ -7,11 +7,12 @@ class ToDo {
   bool fav = false;
   List<String> steps = [];
   List<String> stepsStatus = [];
-  ToDo(String text, bool status,bool fav, List<String> steps) {
+  ToDo(String text, bool status,bool fav, List<String> steps,List<String> stepsStatus) {
     this.text = text;
     this.status = status;
     this.fav = fav;
     this.steps = steps;
+    this.stepsStatus = stepsStatus;
   }
 
 }

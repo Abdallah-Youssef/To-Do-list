@@ -27,6 +27,8 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     showToDoInput = false;
+    toDos = [];
+    saveToDos(toDos);
     readToDos().then((List<ToDo> content) {
       setState(() {
         toDos = content;
@@ -105,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                                         ? TextDecoration.lineThrough
                                         : null)),
                             subtitle:
-                                Text('Insert file name and step progress'),
+                                Text(stepProgress(toDos[i].stepsStatus)),
                             trailing: IconButton(
                                 icon: toDos[i].fav
                                     ? Icon(FontAwesomeIcons.solidHeart)
@@ -172,7 +174,7 @@ class _HomePageState extends State<HomePage> {
 
   void submit(String txt) {
     setState(() {
-      toDos.add(ToDo(txt, false, false , []));
+      toDos.add(ToDo(txt, false, false , [] , []));
       saveToDos(toDos);
       txtCtrl.clear();
     });
@@ -189,11 +191,20 @@ class _HomePageState extends State<HomePage> {
     List<ToDo> _toDos = [];
     for (var i = 0; i < toDos.length; i++)
       if (toDos[i].status == false)
-        _toDos.add(ToDo(toDos[i].text, toDos[i].status, toDos[i].fav , toDos[i].steps));
+        _toDos.add(ToDo(toDos[i].text, toDos[i].status, toDos[i].fav , toDos[i].steps , toDos[i].stepsStatus));
 
     this.setState(() {
       toDos = _toDos;
       saveToDos(toDos);
     });
+  }
+
+  String stepProgress(List<String> status){
+    int count= 0;
+    for (var i = 0;i < status.length;i++){
+      if (status[i] == 't')
+        count++;
+    }
+    return status.length != 0? '$count out of ${status.length}' : 'Tasks';
   }
 }

@@ -8,6 +8,7 @@ void saveToDos (List<ToDo>toDos)async{
     prefs.setBool('$i.status', toDos[i].status);
     prefs.setBool('$i.fav', toDos[i].fav);
     prefs.setStringList('$i.steps', toDos[i].steps);
+    prefs.setStringList('$i.stepsStatus', toDos[i].stepsStatus);
   }
   prefs.setInt('n_tasks', toDos.length);
 }
@@ -18,6 +19,7 @@ void saveIndexedToDo (ToDo toDo, int i)async{
   prefs.setBool('$i.status', toDo.status);
   prefs.setBool('$i.fav', toDo.fav);
   prefs.setStringList('$i.steps', toDo.steps);
+  prefs.setStringList('$i.stepsStatus', toDo.stepsStatus);
 }
 
 Future<List<ToDo>> readToDos ()async{
@@ -27,7 +29,8 @@ Future<List<ToDo>> readToDos ()async{
     toDos.add(ToDo(prefs.getString('$i.text'),
                    prefs.getBool('$i.status'),
                    prefs.getBool('$i.fav'),
-                   prefs.getStringList('$i.steps') ?? []));
+                   prefs.getStringList('$i.steps') ?? [],
+                   prefs.getStringList('$i.stepsStatus') ?? []));
   }
   return toDos;
 }
