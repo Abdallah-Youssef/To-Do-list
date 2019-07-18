@@ -62,7 +62,52 @@ class _TaskViewState extends State<TaskView> {
                     }),
               ),
             ),
-            Column(
+            Expanded(
+                child: ListView.builder(
+                    itemCount: widget.task.steps.length,
+                    itemBuilder: (context, i) {
+                      return Slidable(
+                          actionPane: SlidableBehindActionPane(),
+                          actionExtentRatio: 0.25,
+                          secondaryActions: <Widget>[
+                            IconSlideAction(
+                              caption: 'Delete',
+                              icon: Icons.delete,
+                              color: Colors.red,
+                              onTap: () {
+                                setState(() {
+                                  widget.task.stepsStatus.removeAt(i);
+                                  widget.task.steps.removeAt(i);
+                                  saveIndexedToDo(widget.task, widget.index);
+                                });
+                              },
+                            ),
+                          ],
+                          child: Card(
+                              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                              child: ListTile(
+                                leading: Checkbox(
+                                    value: widget.task.stepsStatus[i] == 'f'
+                                        ? false
+                                        : true,
+                                    onChanged: (bool value) {
+                                      setState(() {
+                                        widget.task.stepsStatus[i] =
+                                            value ? 't' : 'f';
+                                        saveIndexedToDo(
+                                            widget.task, widget.index);
+                                      });
+                                    }),
+                                title: Text(widget.task.steps[i],
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        decoration:
+                                            widget.task.stepsStatus[i] == 't'
+                                                ? TextDecoration.lineThrough
+                                                : null)),
+                              )));
+                    })),
+            /*Column(
                 children: widget.task.steps
                     .map((step) => Slidable(
                         actionPane: SlidableBehindActionPane(),
@@ -110,7 +155,7 @@ class _TaskViewState extends State<TaskView> {
                                           ? TextDecoration.lineThrough
                                           : null)),
                             ))))
-                    .toList()),
+                    .toList())*/
             Card(
               color: Color.fromRGBO(176, 255, 187, 1),
               margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -141,7 +186,7 @@ class _TaskViewState extends State<TaskView> {
                       ))
                 ],
               ),
-            )
+            ),
           ],
         ));
   }
