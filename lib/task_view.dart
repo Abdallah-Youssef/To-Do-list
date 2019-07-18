@@ -64,8 +64,42 @@ class _TaskViewState extends State<TaskView> {
             ),
             Expanded(
                 child: ListView.builder(
-                    itemCount: widget.task.steps.length,
+                    itemCount: widget.task.steps.length + 1,
                     itemBuilder: (context, i) {
+                      if (i == widget.task.steps.length)
+                        return Card(
+                          color: Color.fromRGBO(176, 255, 187, 1),
+                          margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                  margin: EdgeInsets.fromLTRB(30, 0, 10, 0),
+                                  child: Icon(FontAwesomeIcons.plus)),
+                              Container(
+                                  width: 250,
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: 'Add Step'),
+                                    autofocus: true,
+                                    controller: txtCtrl,
+                                    onSubmitted: (String txt) {
+                                      txtCtrl.clear();
+                                      if (txt != '') {
+                                        setState(() {
+                                          widget.task.steps.add(txt);
+                                          widget.task.stepsStatus.add('f');
+                                        });
+                                        saveIndexedToDo(
+                                            widget.task, widget.index);
+                                        print(widget.task.steps);
+                                        print(widget.task.stepsStatus);
+                                      }
+                                    },
+                                  ))
+                            ],
+                          ),
+                        );
                       return Slidable(
                           actionPane: SlidableBehindActionPane(),
                           actionExtentRatio: 0.25,
@@ -156,7 +190,7 @@ class _TaskViewState extends State<TaskView> {
                                           : null)),
                             ))))
                     .toList())*/
-            Card(
+            /*Card(
               color: Color.fromRGBO(176, 255, 187, 1),
               margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
               child: Row(
@@ -186,7 +220,7 @@ class _TaskViewState extends State<TaskView> {
                       ))
                 ],
               ),
-            ),
+            )*/
           ],
         ));
   }
