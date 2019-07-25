@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/home_page.dart';
-import 'package:to_do_app/test.dart';
+import 'package:to_do_app/task_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: TaskList(),
     );
   }
 }

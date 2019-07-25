@@ -6,16 +6,16 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:to_do_app/task_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({
+class TaskList extends StatefulWidget {
+  TaskList({
     Key key,
   }) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _TaskListState createState() => _TaskListState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _TaskListState extends State<TaskList> {
   List<String> texts;
   List<String> status;
   List<ToDo> toDos = [];
