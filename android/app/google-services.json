@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "443831733991",
+    "firebase_url": "https://to-do-d0d60.firebaseio.com",
+    "project_id": "to-do-d0d60",
+    "storage_bucket": "to-do-d0d60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:443831733991:android:a68df33d04cd71034fdc42",
+        "android_client_info": {
+          "package_name": "com.woofy.to_do_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "443831733991-s2ntsseviu5es495f8u9vpcohdrjbgp2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoMrFlk8_k3ukqat1tDEoTJcUSsxgYoj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "443831733991-s2ntsseviu5es495f8u9vpcohdrjbgp2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
